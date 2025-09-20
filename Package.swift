@@ -10,6 +10,11 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
+        // Library product for integration (empty, just for package structure)
+        .library(
+            name: "ApprovalServerKit",
+            targets: ["ApprovalServerKit"]),
+        // Executable product (not imported when used as dependency)
         .executable(
             name: "ApprovalMCPServer",
             targets: ["ApprovalMCPServer"]),
@@ -19,6 +24,12 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0")
     ],
     targets: [
+        // Library target (can be empty or contain shared code)
+        .target(
+            name: "ApprovalServerKit",
+            dependencies: []
+        ),
+        // Executable target (not compiled when package is used as dependency)
         .executableTarget(
             name: "ApprovalMCPServer",
             dependencies: [
